@@ -1,0 +1,9 @@
+LightOccluder2D
+CollisionShape2D
+StaticBody2D
+WorldEnvironment
+Camera2D
+Polygon2D
+GPUParticles2D
+Line2D
+CanvasGroup

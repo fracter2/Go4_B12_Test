@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtnmf8la1ykqb"]
+
+[ext_resource type="PackedScene" uid="uid://cuvnj3repdwin" path="res://src/2d/Campfire.tscn" id="1_pgyoc"]
+
+[sub_resource type="Gradient" id="Gradient_t6byu"]
+offsets = PackedFloat32Array(0, 0.141361, 0.591623, 0.848168, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.136126, 0.136126, 0.136126, 1, 0.522411, 0.522411, 0.522411, 1, 0.93, 0.93, 0.93, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gua5y"]
+gradient = SubResource("Gradient_t6byu")
+
+[sub_resource type="Environment" id="Environment_v1m6x"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_strength = 1.36
+glow_mix = 0.0
+glow_blend_mode = 0
+adjustment_enabled = true
+adjustment_contrast = 1.17
+adjustment_saturation = 1.27
+adjustment_color_correction = SubResource("GradientTexture1D_gua5y")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ihaqy"]
+polygon = PackedVector2Array(-8, -8, -16, 0, 0, 16, 16, 0, 8, -8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n1jfe"]
+polygon = PackedVector2Array(-24, -8, -24, 8, 24, 8, 24, -8)
+
+[node name="World" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v1m6x")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -80)
+current = true
+zoom = Vector2(3, 3)
+
+[node name="Campfire" parent="." instance=ExtResource("1_pgyoc")]
+amount = 128
+randomness = 0.67
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(72, -96)
+occluder = SubResource("OccluderPolygon2D_ihaqy")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(-80, -72)
+occluder = SubResource("OccluderPolygon2D_n1jfe")
