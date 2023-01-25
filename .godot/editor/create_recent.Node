@@ -1,5 +1,9 @@
-LightOccluder2D
 CollisionShape2D
+Area2D
+Popup
+SubViewport
+Window
+LightOccluder2D
 StaticBody2D
 WorldEnvironment
 Camera2D

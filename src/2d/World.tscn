@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtnmf8la1ykqb"]
+[gd_scene load_steps=8 format=3 uid="uid://dtnmf8la1ykqb"]
 
 [ext_resource type="PackedScene" uid="uid://cuvnj3repdwin" path="res://src/2d/Campfire.tscn" id="1_pgyoc"]
+[ext_resource type="Script" path="res://src/2d/scripts/Shadow_ball.gd" id="2_5dyur"]
 
 [sub_resource type="Gradient" id="Gradient_t6byu"]
 offsets = PackedFloat32Array(0, 0.141361, 0.591623, 0.848168, 1)
@@ -25,7 +26,7 @@ adjustment_color_correction = SubResource("GradientTexture1D_gua5y")
 polygon = PackedVector2Array(-8, -8, -16, 0, 0, 16, 16, 0, 8, -8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n1jfe"]
-polygon = PackedVector2Array(-24, -8, -24, 8, 24, 8, 24, -8)
+polygon = PackedVector2Array(-16, -8, -16, 8, -8, 16, 8, 16, 16, 8, 16, -8, 8, -16, -8, -16)
 
 [node name="World" type="Node2D"]
 
@@ -45,6 +46,7 @@ randomness = 0.67
 position = Vector2(72, -96)
 occluder = SubResource("OccluderPolygon2D_ihaqy")
 
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+[node name="Shadow_Ball" type="LightOccluder2D" parent="."]
 position = Vector2(-80, -72)
 occluder = SubResource("OccluderPolygon2D_n1jfe")
+script = ExtResource("2_5dyur")
