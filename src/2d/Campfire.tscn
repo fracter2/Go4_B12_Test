@@ -1,4 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuvnj3repdwin"]
+[gd_scene load_steps=14 format=3 uid="uid://cuvnj3repdwin"]
+
+[ext_resource type="Shader" path="res://src/2d/Campfire_Base_Shader.gdshader" id="1_3r7fc"]
 
 [sub_resource type="Gradient" id="Gradient_lirs1"]
 offsets = PackedFloat32Array(0.0942408, 0.267016, 0.575916, 0.664921, 0.905759)
@@ -66,6 +68,21 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.39
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_skleb"]
+shader = ExtResource("1_3r7fc")
+
+[sub_resource type="Gradient" id="Gradient_xn1eh"]
+interpolation_mode = 2
+colors = PackedColorArray(0.638659, 0.432045, 0.19825, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aslxr"]
+gradient = SubResource("Gradient_xn1eh")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Campfire" type="GPUParticles2D"]
 amount = 256
 process_material = SubResource("ParticleProcessMaterial_wgjb6")
@@ -77,5 +94,14 @@ draw_order = 0
 trail_lifetime = 0.38
 
 [node name="Base" type="Polygon2D" parent="."]
-color = Color(0.470588, 0.470588, 0.470588, 1)
-polygon = PackedVector2Array(-40, 0, -40, 16, 40, 16, 40, 0)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_skleb")
+color = Color(0.572549, 0.352941, 0.109804, 1)
+polygon = PackedVector2Array(-32, 0, -32, 8, -40, 8, -40, 16, 40, 16, 40, 8, 32, 8, 32, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(5, 3)
+scale = Vector2(64, 64)
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_aslxr")

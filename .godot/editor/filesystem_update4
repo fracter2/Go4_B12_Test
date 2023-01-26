@@ -1,3 +1,5 @@
 res://src/2d/World.tscn
 res://src/2d/Campfire.tscn
 res://src/2d/scripts/Shadow_ball.gd
+res://src/2d/Pixel_shador.gdshader
+res://src/2d/Campfire_Base_Shader.gdshader
