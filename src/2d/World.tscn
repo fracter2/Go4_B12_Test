@@ -1,11 +1,13 @@
-[gd_scene load_steps=33 format=3 uid="uid://dtnmf8la1ykqb"]
+[gd_scene load_steps=49 format=3 uid="uid://dtnmf8la1ykqb"]
 
 [ext_resource type="Texture2D" uid="uid://dytmhiqhs6o7r" path="res://src/2d/ezgif.com-gif-maker.png" id="1_28ot8"]
 [ext_resource type="PackedScene" uid="uid://cuvnj3repdwin" path="res://src/2d/Campfire.tscn" id="1_pgyoc"]
 [ext_resource type="Script" path="res://src/2d/scripts/Shadow_ball.gd" id="2_5dyur"]
 [ext_resource type="Shader" path="res://src/2d/Pixel_shador.gdshader" id="2_xewfr"]
 [ext_resource type="Texture2D" uid="uid://cbsgc3kvoetah" path="res://src/2d/Eevee_sleeping.png" id="4_12i8y"]
+[ext_resource type="Script" path="res://src/2d/scripts/Tittle_Timer.gd" id="5_qp2sj"]
 [ext_resource type="Texture2D" uid="uid://y3fnkk44bayu" path="res://src/2d/Congrats.png" id="6_hi5ms"]
+[ext_resource type="Script" path="res://src/2d/scripts/Clicky_Campfire.gd" id="7_05rpu"]
 
 [sub_resource type="Gradient" id="Gradient_t6byu"]
 offsets = PackedFloat32Array(0, 0.141361, 0.591623, 0.848168, 1)
@@ -101,10 +103,19 @@ linear_accel_curve = SubResource("CurveTexture_f3v0h")
 damping_curve = SubResource("CurveTexture_klf0c")
 scale_min = 2.0
 scale_max = 4.0
+collision_mode = 2
+collision_use_scale = true
+
+[sub_resource type="Gradient" id="Gradient_8hvo2"]
+offsets = PackedFloat32Array(0.502618, 1)
+colors = PackedColorArray(1, 1, 1, 1, 50, 50, 50, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ed8ph"]
+gradient = SubResource("Gradient_8hvo2")
 
 [sub_resource type="Curve" id="Curve_hvee6"]
 max_value = 100.0
-_data = [Vector2(0.38785, 0), 0.0, 0.0, 0, 0, Vector2(0.397196, 100), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.38785, 0), 0.0, 0.0, 0, 0, Vector2(0.53271, 23.6364), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_83pfj"]
@@ -131,6 +142,13 @@ point_count = 4
 [sub_resource type="CurveTexture" id="CurveTexture_uhdoq"]
 curve = SubResource("Curve_w08x5")
 
+[sub_resource type="Curve" id="Curve_0ic5j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.263636), 0.0, 0.0, 0, 0, Vector2(0.757009, 0.127273), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_78f8j"]
+curve = SubResource("Curve_0ic5j")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w8sdc"]
 emission_shape = 4
 emission_point_texture = SubResource("ImageTexture_ecvw1")
@@ -147,6 +165,83 @@ damping_max = 1.0
 damping_curve = SubResource("CurveTexture_83pfj")
 scale_min = 3.0
 scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_ed8ph")
+turbulence_enabled = true
+turbulence_noise_strength = 0.1
+turbulence_noise_speed = Vector3(0.2, 0.01, 0.1)
+turbulence_initial_displacement_min = 1.0
+turbulence_initial_displacement_max = 1.7
+turbulence_influence_over_life = SubResource("CurveTexture_78f8j")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 1.0
+collision_use_scale = true
+
+[sub_resource type="Gradient" id="Gradient_lirs1"]
+offsets = PackedFloat32Array(0.0942408, 0.267016, 0.575916, 0.664921, 0.905759)
+colors = PackedColorArray(2, 0.9, 0.36, 1, 1, 0.711485, 0.286514, 1, 1, 0.486275, 0.294118, 1, 1, 1, 1, 1, 0.31802, 0.31802, 0.31802, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nog8u"]
+gradient = SubResource("Gradient_lirs1")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_08ydd"]
+min_value = -75.0
+max_value = 75.0
+_data = [Vector2(0, -25.4545), 0.0, 0.0, 0, 0, Vector2(1, 54.5455), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_epvpu"]
+curve = SubResource("Curve_08ydd")
+
+[sub_resource type="Curve" id="Curve_feo17"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0.28, -95), 0.0, 0.0, 0, 0, Vector2(0.706, 0), 233.455, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5g3y8"]
+curve = SubResource("Curve_feo17")
+
+[sub_resource type="Curve" id="Curve_6dkt2"]
+_data = [Vector2(0.107477, 0), 0.0, 0.0, 0, 0, Vector2(0.584112, 0.0545454), 0.0, 0.0, 0, 0, Vector2(0.939252, 0.372727), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_v7b5w"]
+curve = SubResource("Curve_6dkt2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hs1it"]
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 78.28
+gravity = Vector3(0, -98, 0)
+initial_velocity_min = 50.42
+initial_velocity_max = 50.42
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+linear_accel_curve = SubResource("CurveTexture_epvpu")
+radial_accel_min = 1.0
+radial_accel_max = 1.0
+radial_accel_curve = SubResource("CurveTexture_5g3y8")
+tangential_accel_min = -1.0
+tangential_accel_max = 1.0
+scale_min = 8.0
+scale_max = 8.0
+color_ramp = SubResource("GradientTexture1D_nog8u")
+turbulence_enabled = true
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 9.23
+turbulence_noise_speed = Vector3(0.3, 0.1, 0.5)
+turbulence_influence_min = 0.15
+turbulence_influence_max = 0.8
+turbulence_influence_over_life = SubResource("CurveTexture_v7b5w")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.39
 
 [sub_resource type="Gradient" id="Gradient_cy32v"]
 interpolation_mode = 2
@@ -159,6 +254,9 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rwmx1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf0iu"]
+size = Vector2(128, 128)
 
 [node name="World" type="Node2D"]
 
@@ -182,12 +280,6 @@ position = Vector2(-80, -72)
 occluder = SubResource("OccluderPolygon2D_n1jfe")
 script = ExtResource("2_5dyur")
 
-[node name="EeveeSleeping" type="Sprite2D" parent="."]
-light_mask = 3
-position = Vector2(112, -16)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_12i8y")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -392)
 scale = Vector2(64, 64)
@@ -207,20 +299,46 @@ scale = Vector2(64, 64)
 blend_mode = 1
 texture = SubResource("GradientTexture2D_v8m0q")
 
+[node name="EeveeSleeping" type="Sprite2D" parent="."]
+light_mask = 3
+position = Vector2(112, -16)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_12i8y")
+
 [node name="Tittle" type="GPUParticles2D" parent="."]
 position = Vector2(-279, -310)
+emitting = false
 amount = 2056
 process_material = SubResource("ParticleProcessMaterial_764bq")
-lifetime = 30.0
+lifetime = 45.0
+speed_scale = 0.7
 visibility_rect = Rect2(21, 33, 518, 31.4025)
+script = ExtResource("5_qp2sj")
+
+[node name="Timer" type="Timer" parent="Tittle"]
+wait_time = 5.0
+one_shot = true
+autostart = true
 
 [node name="Snoow" type="GPUParticles2D" parent="."]
 position = Vector2(-279, -310)
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_w8sdc")
-lifetime = 17.0
+lifetime = 24.0
 randomness = 0.45
 visibility_rect = Rect2(6.77081, 30.1375, 534.939, 412.025)
+
+[node name="Eevee_Fire" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(112, -16)
+scale = Vector2(0.4, 0.4)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_hs1it")
+lifetime = 2.5
+speed_scale = 1.5
+randomness = 0.67
+collision_base_size = 4.0
+draw_order = 0
 
 [node name="Campfire" parent="." instance=ExtResource("1_pgyoc")]
 amount = 128
@@ -236,3 +354,26 @@ visible = false
 material = SubResource("CanvasItemMaterial_rwmx1")
 position = Vector2(0, -285)
 texture = ExtResource("6_hi5ms")
+
+[node name="Campfire2" parent="." instance=ExtResource("1_pgyoc")]
+position = Vector2(112, -16)
+emitting = false
+amount = 1
+lifetime = 1.0
+script = ExtResource("7_05rpu")
+
+[node name="Base" parent="Campfire2" index="0"]
+visible = false
+
+[node name="ClickArea" type="Area2D" parent="Campfire2"]
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(0.4, 0.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Campfire2/ClickArea"]
+shape = SubResource("RectangleShape2D_pf0iu")
+
+[connection signal="timeout" from="Tittle/Timer" to="Tittle" method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="Campfire2/ClickArea" to="Campfire2" method="_on_click_area_mouse_entered"]
+[connection signal="mouse_exited" from="Campfire2/ClickArea" to="Campfire2" method="_on_click_area_mouse_exited"]
+
+[editable path="Campfire2"]

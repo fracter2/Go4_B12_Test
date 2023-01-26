@@ -1,10 +1,11 @@
+Timer
 GPUParticles2D
+CollisionShape2D
+Area2D
 SubViewport
 Sprite2D
 PointLight2D
 CPUParticles2D
-CollisionShape2D
-Area2D
 Popup
 Window
 LightOccluder2D

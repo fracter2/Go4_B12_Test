@@ -1,72 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuvnj3repdwin"]
+[gd_scene load_steps=7 format=3 uid="uid://cuvnj3repdwin"]
 
 [ext_resource type="Shader" path="res://src/2d/Campfire_Base_Shader.gdshader" id="1_3r7fc"]
-
-[sub_resource type="Gradient" id="Gradient_lirs1"]
-offsets = PackedFloat32Array(0.0942408, 0.267016, 0.575916, 0.664921, 0.905759)
-colors = PackedColorArray(2, 0.9, 0.36, 1, 1, 0.711485, 0.286514, 1, 1, 0.486275, 0.294118, 1, 1, 1, 1, 1, 0.31802, 0.31802, 0.31802, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_nog8u"]
-gradient = SubResource("Gradient_lirs1")
-use_hdr = true
-
-[sub_resource type="Curve" id="Curve_08ydd"]
-min_value = -75.0
-max_value = 75.0
-_data = [Vector2(0, -25.4545), 0.0, 0.0, 0, 0, Vector2(1, 54.5455), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_epvpu"]
-curve = SubResource("Curve_08ydd")
-
-[sub_resource type="Curve" id="Curve_feo17"]
-min_value = -200.0
-max_value = 200.0
-_data = [Vector2(0.28, -95), 0.0, 0.0, 0, 0, Vector2(0.706, 0), 233.455, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_5g3y8"]
-curve = SubResource("Curve_feo17")
-
-[sub_resource type="Curve" id="Curve_6dkt2"]
-_data = [Vector2(0.107477, 0), 0.0, 0.0, 0, 0, Vector2(0.584112, 0.0545454), 0.0, 0.0, 0, 0, Vector2(0.939252, 0.372727), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_v7b5w"]
-curve = SubResource("Curve_6dkt2")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wgjb6"]
-emission_shape = 3
-emission_box_extents = Vector3(8, 1, 1)
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 78.28
-gravity = Vector3(0, -98, 0)
-initial_velocity_min = 50.42
-initial_velocity_max = 50.42
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-linear_accel_min = 1.0
-linear_accel_max = 1.0
-linear_accel_curve = SubResource("CurveTexture_epvpu")
-radial_accel_min = 1.0
-radial_accel_max = 1.0
-radial_accel_curve = SubResource("CurveTexture_5g3y8")
-tangential_accel_min = -1.0
-tangential_accel_max = 1.0
-scale_min = 8.0
-scale_max = 8.0
-color_ramp = SubResource("GradientTexture1D_nog8u")
-turbulence_enabled = true
-turbulence_noise_strength = 0.1
-turbulence_noise_scale = 9.23
-turbulence_noise_speed = Vector3(0.3, 0.1, 0.5)
-turbulence_influence_min = 0.15
-turbulence_influence_max = 0.8
-turbulence_influence_over_life = SubResource("CurveTexture_v7b5w")
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.39
+[ext_resource type="Material" uid="uid://dd6q4ero64lun" path="res://src/2d/resources/Campfire_shader.tres" id="1_mhfu8"]
+[ext_resource type="Script" path="res://src/2d/scripts/Campfire.gd" id="2_tyco2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_skleb"]
 shader = ExtResource("1_3r7fc")
@@ -85,13 +21,14 @@ fill_to = Vector2(1, 0.5)
 
 [node name="Campfire" type="GPUParticles2D"]
 amount = 256
-process_material = SubResource("ParticleProcessMaterial_wgjb6")
+process_material = ExtResource("1_mhfu8")
 lifetime = 2.5
 speed_scale = 1.5
 randomness = 0.36
 collision_base_size = 4.0
 draw_order = 0
 trail_lifetime = 0.38
+script = ExtResource("2_tyco2")
 
 [node name="Base" type="Polygon2D" parent="."]
 show_behind_parent = true
